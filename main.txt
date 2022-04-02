@@ -1,0 +1,37 @@
+package Task19;
+
+public class Main {
+    public static void main(String[] args) {
+        Author authorKadare = new Author("Kadare", "Shqiptar");
+        Poem poem1 = new Poem(authorKadare, 27);
+        
+        Author agolli = new Author("Agolli", "Shqiptar");
+        Poem poem2 = new Poem(agolli, 45);
+        
+        Poem poem3 = new Poem(new Author("Poradeci", "Shqiptar"), 34);
+
+        Poem[] poemat = new Poem[3];
+        poemat[0] = poem1;
+        poemat[1] = poem2;
+        poemat[2] = poem3;
+
+        String mbiemri = gjejAutorin(poemat);
+        System.out.println(mbiemri);
+    }
+
+    private static String gjejAutorin(Poem[] poemat) {
+        int longestPoem = poemat[0].getStropheNo(); //27
+        String mbiemri = "";
+        int index = 0;
+        for(int i = 1; i < poemat.length; i++) {
+            if(longestPoem < poemat[i].getStropheNo())
+            {
+                longestPoem = poemat[i].getStropheNo();
+                index = i;
+            }
+        }
+        //mbiemri = poemat[1].getCreator().getSurname()
+        mbiemri = poemat[index].getCreator().getSurname();
+        return mbiemri;
+    }
+}
